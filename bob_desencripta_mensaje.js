@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 const ArchivoLeer = "msg_alice_encriptado.txt";
-const ArchivoGuardar = "msg_Alice_Desincriptado_por_Bob";
+const ArchivoGuardar = "msg_Alice_Desincriptado_por_Bob.txt";
 const ClavePrivada = "ClavePrivada_Bob.pem";
 
 app.listen(port, () => {

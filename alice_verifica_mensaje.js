@@ -9,7 +9,7 @@ var CryptoJS = require("crypto-js");
 const app = express();
 app.use(express.json());
 
-const ArchivoLeer = "msg_Alice_Desincriptado_por_Bob";
+const ArchivoLeer = "msg_Alice_Desincriptado_por_Bob.txt";
 const ArchivoFirma = "firma_Bob.txt";
 const ClavePublica = "ClavePublica_Bob.pem";
 
