@@ -26,4 +26,6 @@ const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
 fs.writeFileSync(ArchivoPublica, publicKey.export({ type: 'spki', format: 'pem' }), 'utf-8');
 fs.writeFileSync(ArchivoPrivada, privateKey.export({ type: 'pkcs8', format: 'pem' }), 'utf-8');
 
-console.log("Claves Generadas");
+console.log("Claves Generadas de Bob");
+
+process.exit();

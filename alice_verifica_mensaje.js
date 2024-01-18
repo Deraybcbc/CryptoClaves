@@ -6,12 +6,11 @@ const path = require('path');
 const crypto = require('crypto');
 var CryptoJS = require("crypto-js");
 
-
 const app = express();
 app.use(express.json());
 
-const ArchivoLeer = "msg_alice.txt";
-const ArchivoGuardar = "msg_alice_encriptado.txt";
+const ArchivoLeer = "msg_Alice_Desincriptado_por_Bob";
+const ArchivoFirma = "firma_Bob.txt";
 const ClavePublica = "ClavePublica_Bob.pem";
 
 app.listen(port, () => {
@@ -21,16 +20,20 @@ app.listen(port, () => {
 const data = fs.readFileSync(ArchivoLeer, 'utf-8');
 console.log(data);
 
-const publicKey = fs.readFileSync(ClavePublica, 'utf-8').toString();;
+const firma_bob = fs.readFileSync(ArchivoFirma, 'utf-8');
+console.log(firma_bob);
+
+const publicKey = fs.readFileSync(ClavePublica, 'utf-8');
 console.log(publicKey);
 
 
-const mensajeEncriptado = crypto.publicEncrypt(publicKey, Buffer.from(data,'utf-8')).toString('base64');
-console.log(mensajeEncriptado);
+const verifacion = crypto.verify(null, data, publicKey, Buffer.from(firma_bob, 'base64'));
+console.log(verifacion);
 
-fs.writeFileSync(ArchivoGuardar,mensajeEncriptado,'utf-8');
-
-
-console.log("Mensaje encriptado y guardado en", ArchivoGuardar);
+if (verifacion) {
+    console.log("La firma es válida");
+}else{
+    console.log("La firma no es válida");
+}
 
 process.exit();
