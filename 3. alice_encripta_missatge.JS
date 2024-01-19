@@ -14,9 +14,7 @@ const ArchivoLeer = "msg_alice.txt";
 const ArchivoGuardar = "msg_alice_encriptado.txt";
 const ClavePublica = "ClavePublica_Bob.pem";
 
-app.listen(port, () => {
-    console.log("Servidor http://localhost:" + port);
-});
+
 
 const data = fs.readFileSync(ArchivoLeer, 'utf-8');
 console.log(data);
@@ -25,10 +23,10 @@ const publicKey = fs.readFileSync(ClavePublica, 'utf-8').toString();;
 console.log(publicKey);
 
 
-const mensajeEncriptado = crypto.publicEncrypt(publicKey, Buffer.from(data,'utf-8')).toString('base64');
+const mensajeEncriptado = crypto.publicEncrypt(publicKey, Buffer.from(data, 'utf-8')).toString('base64');
 console.log(mensajeEncriptado);
 
-fs.writeFileSync(ArchivoGuardar,mensajeEncriptado,'utf-8');
+fs.writeFileSync(ArchivoGuardar, mensajeEncriptado, 'utf-8');
 
 
 console.log("Mensaje encriptado y guardado en", ArchivoGuardar);
